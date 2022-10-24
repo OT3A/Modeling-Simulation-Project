@@ -51,14 +51,21 @@ namespace MultiQueueSimulation
         {
 
             SimulationSystem system = new SimulationSystem();
-            //string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
-            //MessageBox.Show(result);
+            string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
+            MessageBox.Show(result);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            Console.WriteLine("sikooo");
-            Data data = new Data("D:\\College\\Fourth Year\\Modeling & Simulation\\Tasks\\Task 1\\Modeling-Simulation-Project\\MultiQueueSimulation\\MultiQueueSimulation\\TestCases\\TestCase2.txt", system);
-            SelectionMethod.TableCalculation(system);
+
+            Form1 temp_form = new Form1(system);
+            Application.Run(temp_form);
+            //Application.Run(new Form1());
+
+            //Console.WriteLine("sikooo");
+            //Data data = new Data("D:\\College\\Fourth Year\\Modeling & Simulation\\Tasks\\Task 1\\Modeling-Simulation-Project\\MultiQueueSimulation\\MultiQueueSimulation\\TestCases\\TestCase2.txt", system);
+            //SelectionMethod.TableCalculation(system);
+
+            //Data data = new Data(temp_form.file, system);
+            //SelectionMethod.TableCalculation(system);
 
         }
     }
