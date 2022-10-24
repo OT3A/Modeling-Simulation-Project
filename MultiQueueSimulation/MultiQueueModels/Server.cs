@@ -11,6 +11,14 @@ namespace MultiQueueModels
         public Server()
         {
             this.TimeDistribution = new List<TimeDistribution>();
+            //this.is_idle = true;
+        }
+        public Server(int id)
+        {
+            this.TimeDistribution = new List<TimeDistribution>();
+            //this.is_idle = true;
+
+            this.ID = id;
         }
 
         public int ID { get; set; }
@@ -19,6 +27,8 @@ namespace MultiQueueModels
         public decimal Utilization { get; set; }
 
         public List<TimeDistribution> TimeDistribution;
+
+        //public bool is_idle { get; set; }
 
         //optional if needed use them
         public int FinishTime { get; set; }
