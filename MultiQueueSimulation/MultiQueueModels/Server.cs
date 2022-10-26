@@ -17,9 +17,11 @@ namespace MultiQueueModels
         {
             this.TimeDistribution = new List<TimeDistribution>();
             //this.is_idle = true;
-
+            busy = new int [1000];
             this.ID = id;
         }
+
+
 
         public int ID { get; set; }
         public decimal IdleProbability { get; set; }
@@ -33,5 +35,7 @@ namespace MultiQueueModels
         //optional if needed use them
         public int FinishTime { get; set; }
         public int TotalWorkingTime { get; set; }
+        public int TotalCustomers { get; set; }
+        public int[] busy { get; set; }
     }
 }

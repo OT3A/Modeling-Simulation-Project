@@ -8,6 +8,10 @@ namespace MultiQueueModels
 {
     public class PerformanceMeasures
     {
+        public  PerformanceMeasures()
+        {
+
+        }
         public decimal AverageWaitingTime { get; set; }
         public int MaxQueueLength { get; set; }
         public decimal WaitingProbability { get; set; }

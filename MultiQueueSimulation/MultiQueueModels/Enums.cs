@@ -8,6 +8,10 @@ namespace MultiQueueModels
 {
     public class Enums
     {
+        public Enums()
+        {
+
+        }
         public enum SelectionMethod
         {
             HighestPriority = 1,

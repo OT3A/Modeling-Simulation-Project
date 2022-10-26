@@ -13,6 +13,10 @@ namespace MultiQueueModels
             this.Time = time;
             this.Probability = prob;
         }
+        public TimeDistribution()
+        {
+
+        }
 
 
         public int Time { get; set; }

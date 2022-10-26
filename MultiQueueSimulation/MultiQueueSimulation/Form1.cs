@@ -22,6 +22,7 @@ namespace MultiQueueSimulation
             InitializeComponent();
         }
 
+        public int temp { get; set; }
         public SimulationSystem sys { get; set; }
         public Form1(SimulationSystem temp) {
             this.sys = temp;
@@ -33,6 +34,16 @@ namespace MultiQueueSimulation
             int size = -1;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
+            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
+
+
             if (result == DialogResult.OK) // Test result.
             {
                 file = openFileDialog1.FileName;
@@ -40,25 +51,88 @@ namespace MultiQueueSimulation
                 {
                     string text = File.ReadAllText(file);
                     size = text.Length;
-
-
+                    sys = new SimulationSystem();
                     Data data = new Data(file, sys);
                     SelectionMethod.TableCalculation(sys);
+                    dataGridView1.DataSource = sys.SimulationTable;
+
+
+                    List<PerformanceMeasures> temp = new List<PerformanceMeasures>();    
+                       
+                    for(int i = 0; i<sys.Servers.Count;i++)
+                    {
+                        temp.Add(new PerformanceMeasures(i+1,sys.Servers[i].IdleProbability, sys.Servers[i].AverageServiceTime));
+                    }
+                    dataGridView2.DataSource = temp;
+                    textBox1.Text = sys.WaitingProbability.ToString();
+                    textBox2.Text = sys.AverageWaitingTime.ToString();
+
+                    comboBox1.Items.Clear();
+                    for (int i = 1; i <= sys.Servers.Count; i++)
+                        comboBox1.Items.Add(i);
                 }
                 catch (IOException)
                 {
+
                 }
             }
-            Console.WriteLine(size); // <-- Shows file size in debugging mode.
-            Console.WriteLine(result); // <-- For debugging use.
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string[] row0 = { "11/22/1968", "29", "Revolution 9",
-            "Beatles", "The Beatles [White Album]" , "siko", "siko", "siko", "siko", "siko"};
-            dataGridView1.Rows.Add(row0);
-            dataGridView1.Columns[0].DisplayIndex = 0;
+           
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+
+            Form2 frm = new Form2(sys.Servers[0]);
+            frm.Show();
+           //     this.Hide();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int x = comboBox1.SelectedIndex;
+            Form2 frm = new Form2(sys.Servers[x]);
+            frm.Show();
         }
     }
 }

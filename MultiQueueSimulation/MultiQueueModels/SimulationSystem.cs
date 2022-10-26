@@ -15,6 +15,7 @@ namespace MultiQueueModels
             this.PerformanceMeasures = new PerformanceMeasures();
             this.SimulationTable = new List<SimulationCase>();
         }
+       
 
         ///////////// INPUTS ///////////// 
         public int NumberOfServers { get; set; }
@@ -23,11 +24,18 @@ namespace MultiQueueModels
         public List<TimeDistribution> InterarrivalDistribution { get; set; }
         public Enums.StoppingCriteria StoppingCriteria { get; set; }
         public Enums.SelectionMethod SelectionMethod { get; set; }
+        public int TotalTimeinQueue { get; set; }
+        public int NumOfWaitedCus { get; set; }
+        public int TotalRunTime { get; set; }
+
 
         ///////////// OUTPUTS /////////////
         public List<SimulationCase> SimulationTable { get; set; }
         public PerformanceMeasures PerformanceMeasures { get; set; }
 
-        
+        public float AverageWaitingTime { get; set; }
+        public float WaitingProbability { get; set; }
+
+
     }
 }

@@ -30,24 +30,23 @@
         {
             this.Select = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.randomDigitForArrival = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InterArrivalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClockTimeOfArrival = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RandomDigitForService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeServiceBegin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServiceTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeServiceEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeInQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // Select
             // 
-            this.Select.Location = new System.Drawing.Point(1224, 720);
+            this.Select.Location = new System.Drawing.Point(454, 558);
+            this.Select.Margin = new System.Windows.Forms.Padding(2);
             this.Select.Name = "Select";
-            this.Select.Size = new System.Drawing.Size(130, 49);
+            this.Select.Size = new System.Drawing.Size(98, 40);
             this.Select.TabIndex = 0;
             this.Select.Text = "Select Test Case";
             this.Select.UseVisualStyleBackColor = true;
@@ -55,110 +54,105 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.customer,
-            this.randomDigitForArrival,
-            this.InterArrivalTime,
-            this.ClockTimeOfArrival,
-            this.RandomDigitForService,
-            this.TimeServiceBegin,
-            this.ServiceTime,
-            this.TimeServiceEnd,
-            this.ServerID,
-            this.TimeInQueue});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 5);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1304, 702);
+            this.dataGridView1.Size = new System.Drawing.Size(1041, 259);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // customer
+            // dataGridView2
             // 
-            this.customer.HeaderText = "Custome No.";
-            this.customer.MinimumWidth = 6;
-            this.customer.Name = "customer";
-            this.customer.ReadOnly = true;
-            this.customer.Width = 125;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(221, 269);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(606, 170);
+            this.dataGridView2.TabIndex = 2;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // randomDigitForArrival
+            // textBox1
             // 
-            this.randomDigitForArrival.HeaderText = "Random Digit For Arrival";
-            this.randomDigitForArrival.MinimumWidth = 6;
-            this.randomDigitForArrival.Name = "randomDigitForArrival";
-            this.randomDigitForArrival.ReadOnly = true;
-            this.randomDigitForArrival.Width = 125;
+            this.textBox1.Location = new System.Drawing.Point(630, 484);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(151, 20);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // InterArrivalTime
+            // textBox2
             // 
-            this.InterArrivalTime.HeaderText = "Time Between Arrival";
-            this.InterArrivalTime.MinimumWidth = 6;
-            this.InterArrivalTime.Name = "InterArrivalTime";
-            this.InterArrivalTime.Width = 125;
+            this.textBox2.Location = new System.Drawing.Point(331, 484);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(151, 20);
+            this.textBox2.TabIndex = 6;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // ClockTimeOfArrival
+            // label3
             // 
-            this.ClockTimeOfArrival.HeaderText = "ClockTimeOfArrival";
-            this.ClockTimeOfArrival.MinimumWidth = 6;
-            this.ClockTimeOfArrival.Name = "ClockTimeOfArrival";
-            this.ClockTimeOfArrival.Width = 125;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(339, 454);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 16);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Average Waiting Time";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // RandomDigitForService
+            // label4
             // 
-            this.RandomDigitForService.HeaderText = "Random Digit For Service";
-            this.RandomDigitForService.MinimumWidth = 6;
-            this.RandomDigitForService.Name = "RandomDigitForService";
-            this.RandomDigitForService.Width = 125;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(646, 454);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 16);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Probability OF Wait";
             // 
-            // TimeServiceBegin
+            // button2
             // 
-            this.TimeServiceBegin.HeaderText = "TimeServiceBegin";
-            this.TimeServiceBegin.MinimumWidth = 6;
-            this.TimeServiceBegin.Name = "TimeServiceBegin";
-            this.TimeServiceBegin.Width = 125;
+            this.button2.Location = new System.Drawing.Point(178, 562);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 32);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Creat Chart";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ServiceTime
+            // comboBox1
             // 
-            this.ServiceTime.HeaderText = "ServiceTime";
-            this.ServiceTime.MinimumWidth = 6;
-            this.ServiceTime.Name = "ServiceTime";
-            this.ServiceTime.Width = 125;
-            // 
-            // TimeServiceEnd
-            // 
-            this.TimeServiceEnd.HeaderText = "TimeServiceEnd";
-            this.TimeServiceEnd.MinimumWidth = 6;
-            this.TimeServiceEnd.Name = "TimeServiceEnd";
-            this.TimeServiceEnd.Width = 125;
-            // 
-            // ServerID
-            // 
-            this.ServerID.HeaderText = "Server ID";
-            this.ServerID.MinimumWidth = 6;
-            this.ServerID.Name = "ServerID";
-            this.ServerID.Width = 125;
-            // 
-            // TimeInQueue
-            // 
-            this.TimeInQueue.HeaderText = "TimeInQueue";
-            this.TimeInQueue.MinimumWidth = 6;
-            this.TimeInQueue.Name = "TimeInQueue";
-            this.TimeInQueue.Width = 125;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(178, 535);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 781);
+            this.ClientSize = new System.Drawing.Size(1063, 609);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Select);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Siko";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -166,16 +160,13 @@
 
         private System.Windows.Forms.Button Select;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn randomDigitForArrival;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InterArrivalTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClockTimeOfArrival;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RandomDigitForService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeServiceBegin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeServiceEnd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeInQueue;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

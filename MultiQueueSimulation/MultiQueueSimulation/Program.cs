@@ -25,7 +25,7 @@
 //            Application.Run(new Form1());
 //            Console.WriteLine("sikooo");
 
-//            Data data = new Data("D:\\College\\Fourth Year\\Modeling & Simulation\\Tasks\\Task 1\\Modeling-Simulation-Project\\MultiQueueSimulation\\MultiQueueSimulation\\TestCases\\TestCase1.txt");
+//            Data data = new Data("D:\\\\College\\\\Fourth Year\\\\Modeling & Simulation\\\\Tasks\\\\Task 1\\\\Modeling-Simulation-Project\\\\MultiQueueSimulation\\\\MultiQueueSimulation\\\\TestCases\\\\TestCase1.txt");
 
 //        }
 //    }
@@ -50,22 +50,17 @@ namespace MultiQueueSimulation
         static void Main()
         {
 
+            String path = "C:\\Users\\Ahmed Ali\\Downloads\\Modeling-Simulation-Project-main\\MultiQueueSimulation\\MultiQueueSimulation\\TestCases\\TestCase1.txt";
             SimulationSystem system = new SimulationSystem();
+            Data data = new Data(path, system);
+            SelectionMethod.TableCalculation(system);
             string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
-            MessageBox.Show(result);
+             MessageBox.Show(result);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Form1 temp_form = new Form1(system);
             Application.Run(temp_form);
-            //Application.Run(new Form1());
-
-            //Console.WriteLine("sikooo");
-            //Data data = new Data("D:\\College\\Fourth Year\\Modeling & Simulation\\Tasks\\Task 1\\Modeling-Simulation-Project\\MultiQueueSimulation\\MultiQueueSimulation\\TestCases\\TestCase2.txt", system);
-            //SelectionMethod.TableCalculation(system);
-
-            //Data data = new Data(temp_form.file, system);
-            //SelectionMethod.TableCalculation(system);
+          
 
         }
     }
