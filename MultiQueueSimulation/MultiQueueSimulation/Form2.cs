@@ -35,11 +35,9 @@ namespace MultiQueueSimulation
 
             for (int i = 0; i< server.busy.Length; i++)
             {
-                temp.AddXY(i, server.busy[i]); 
+                temp.AddXY(i, server.busy[i]);
+                Console.WriteLine(server.busy[i]);
             }
-         //   chart1.ChartAreas[0].AxisY.Maximum = yAxisMax;
-
-
         }
         public Form2(Server s)
         {
@@ -58,8 +56,7 @@ namespace MultiQueueSimulation
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //for(int i = 0; i<
-            //comboBox1.Items.Add(i);
+            
         }
     }
 }

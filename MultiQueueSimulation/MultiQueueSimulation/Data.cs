@@ -93,13 +93,10 @@ namespace MultiQueueSimulation
                     for (int j = i + 1; j < lines.Length; j++)
                     {
                         if (lines[j] == null || lines[j].Length == 0 || lines[j] == "")
-                            break;
-
-                        Console.WriteLine(lines[j].Split(',')[0]);
-                        Console.WriteLine(lines[j].Split(',')[1]);
+                            break;                  
                         int time = int.Parse(lines[j].Split(',')[0]);
                         decimal prob = decimal.Parse(lines[j].Split(',')[1]);
-
+                        sys.Servers[count].MaxService = Math.Max(sys.Servers[count].MaxService, time);
                         sys.Servers[count].TimeDistribution.Add(new TimeDistribution(time, prob));
                     }
                 }
@@ -111,6 +108,7 @@ namespace MultiQueueSimulation
             //server time
             foreach (Server server in sys.Servers)
             {
+                sys.MaxService = Math.Max(sys.MaxService, server.MaxService);
                 TimeDistribution.allTimeDistribution(server.TimeDistribution);
             }
 

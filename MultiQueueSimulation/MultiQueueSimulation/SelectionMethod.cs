@@ -17,118 +17,141 @@ namespace MultiQueueSimulation
         {
 
             Random rd = new Random();
+            int size = 100 ;
+            bool check = false;
+
             if (sys.StoppingCriteria == Enums.StoppingCriteria.NumberOfCustomers)
+                size = sys.StoppingNumber;
+            else
+                check = true;
+                
+            for (int i = 0; i < size; i++)
             {
-                for (int i = 0; i < sys.StoppingNumber; i++)
+                if (check == true && sys.TotalRunTime + sys.MaxService > sys.StoppingNumber)
+                    break;
+                sys.SimulationTable.Add(new SimulationCase());
+                sys.SimulationTable[i].CustomerNumber = i + 1; //Column A
+
+                if (i == 0)
+                {
+                    sys.SimulationTable[i].ArrivalTime = 0;
+                    sys.SimulationTable[i].AssignedServer = sys.Servers[i];  // "i" here = 0
+                    sys.SimulationTable[i].ServerID = 1;
+                    sys.SimulationTable[i].StartTime = 0;
+                    sys.SimulationTable[i].RandomInterArrival = 1;
+                    sys.SimulationTable[i].RandomService = rd.Next(1, 100);
+                    List<TimeDistribution> temp_list = sys.SimulationTable[i].AssignedServer.TimeDistribution;
+
+                    for (int j = 0; j < temp_list.Count(); j++)
+                    {
+                        if (sys.SimulationTable[i].RandomService >= temp_list[j].MinRange && sys.SimulationTable[i].RandomService <= temp_list[j].MaxRange)
+                        {
+                            sys.SimulationTable[i].ServiceTime = temp_list[j].Time;
+                        }
+                    }
+
+
+                    sys.SimulationTable[i].EndTime = sys.SimulationTable[i].ServiceTime + sys.SimulationTable[i].StartTime;
+
+                    sys.Servers[i].FinishTime = sys.SimulationTable[i].EndTime;
+
+                    sys.SimulationTable[i].TimeInQueue = 0;
+
+                    for (int j = sys.SimulationTable[i].StartTime; j <= sys.SimulationTable[i].EndTime; j++)
+                        sys.SimulationTable[i].AssignedServer.busy[j] = 1;
+
+                    //--------------------------------------OutPut---------------------------------
+                    sys.TotalRunTime += sys.SimulationTable[i].EndTime; // Sup of output
+                    sys.SimulationTable[i].AssignedServer.TotalWorkingTime += sys.SimulationTable[i].ServiceTime;//OutPut
+                    sys.SimulationTable[i].AssignedServer.TotalCustomers++;
+                }
+                else
                 {
 
-                    sys.SimulationTable.Add(new SimulationCase());
-                    sys.SimulationTable[i].CustomerNumber = i + 1; //Column A
+                    sys.SimulationTable[i].RandomInterArrival = rd.Next(1, 100); //Column B
 
-                    if (i == 0)
+                    List<TimeDistribution> arr_timeDist = sys.InterarrivalDistribution;
+
+                    for (int j = 0; j < arr_timeDist.Count(); j++)
                     {
-                        sys.SimulationTable[i].ArrivalTime = 0;
-                        sys.SimulationTable[i].AssignedServer = sys.Servers[i];  // "i" here = 0
-                        sys.SimulationTable[i].ServerID = 1;
-                        sys.SimulationTable[i].StartTime = 0;
-                        sys.SimulationTable[i].RandomInterArrival = 1;
-                        sys.SimulationTable[i].RandomService = rd.Next(1, 100);
-                        List<TimeDistribution> temp_list = sys.SimulationTable[i].AssignedServer.TimeDistribution;
-
-                        for (int j = 0; j < temp_list.Count(); j++)
+                        if (sys.SimulationTable[i].RandomInterArrival >= arr_timeDist[j].MinRange && sys.SimulationTable[i].RandomInterArrival <= arr_timeDist[j].MaxRange)
                         {
-                            if (sys.SimulationTable[i].RandomService >= temp_list[j].MinRange && sys.SimulationTable[i].RandomService <= temp_list[j].MaxRange)
-                            {
-                                sys.SimulationTable[i].ServiceTime = temp_list[j].Time;
-                            }
+                            sys.SimulationTable[i].InterArrival = arr_timeDist[j].Time; //Column C
                         }
-
-
-                        sys.SimulationTable[i].EndTime = sys.SimulationTable[i].ServiceTime + sys.SimulationTable[i].StartTime;
-
-                        sys.Servers[i].FinishTime = sys.SimulationTable[i].EndTime;
-
-                        sys.SimulationTable[i].TimeInQueue = 0;
-
-                        for (int j = sys.SimulationTable[i].StartTime; j <= sys.SimulationTable[i].EndTime; j++)
-                            sys.SimulationTable[i].AssignedServer.busy[j] = 1;
-                                
-                        //--------------------------------------OutPut---------------------------------
-                        sys.TotalRunTime += sys.SimulationTable[i].EndTime; // Sup of output
-                        sys.SimulationTable[i].AssignedServer.TotalWorkingTime += sys.SimulationTable[i].ServiceTime;//OutPut
-                        sys.SimulationTable[i].AssignedServer.TotalCustomers++;
                     }
+
+                    sys.SimulationTable[i].ArrivalTime = sys.SimulationTable[i - 1].ArrivalTime + sys.SimulationTable[i].InterArrival; //column D
+
+                    sys.SimulationTable[i].RandomService = rd.Next(1, 100);
+                    //------------------choose selection method-----------------------
+                    if (sys.SelectionMethod == Enums.SelectionMethod.HighestPriority)
+                        sys.SimulationTable[i].AssignedServer = prioritySelection(sys, sys.SimulationTable[i]); //priority server selection 
+                    else if (sys.SelectionMethod == Enums.SelectionMethod.Random)
+                        sys.SimulationTable[i].AssignedServer = randomSelection(sys, sys.SimulationTable[i]); //!!! in progress
                     else
-                    {
+                        sys.SimulationTable[i].AssignedServer = leastUtilization(sys, sys.SimulationTable[i]); //!!! in progress                                                                                                               //----------------------------------------------------------------
+                    //-------------------------------OutPut-------------------------------------
+                    sys.SimulationTable[i].AssignedServer.TotalWorkingTime += sys.SimulationTable[i].ServiceTime;
 
-                        sys.SimulationTable[i].RandomInterArrival = rd.Next(1, 100); //Column B
+                    sys.SimulationTable[i].AssignedServer.TotalCustomers++;
+                    sys.SimulationTable[i].ServerID = sys.SimulationTable[i].AssignedServer.ID;
+                    sys.SimulationTable[i].TimeInQueue = sys.SimulationTable[i].StartTime - sys.SimulationTable[i].ArrivalTime;
+                    sys.SimulationTable[i].EndTime = sys.SimulationTable[i].ServiceTime + sys.SimulationTable[i].StartTime;
 
-                        List<TimeDistribution> arr_timeDist = sys.InterarrivalDistribution;
+                    sys.TotalTimeinQueue += sys.SimulationTable[i].TimeInQueue;
 
-                        for (int j = 0; j < arr_timeDist.Count(); j++)
-                        {
-                            if (sys.SimulationTable[i].RandomInterArrival >= arr_timeDist[j].MinRange && sys.SimulationTable[i].RandomInterArrival <= arr_timeDist[j].MaxRange)
-                            {
-                                sys.SimulationTable[i].InterArrival = arr_timeDist[j].Time; //Column C
-                            }
-                        }
+                    //Mabrouk
+                    sys.TotalRunTime = Math.Max(sys.SimulationTable[i].EndTime, sys.TotalRunTime); // Sup of output
 
-                        sys.SimulationTable[i].ArrivalTime = sys.SimulationTable[i - 1].ArrivalTime + sys.SimulationTable[i].InterArrival; //column D
 
-                        sys.SimulationTable[i].RandomService = rd.Next(1, 100);
-                        //------------------choose selection method-----------------------
-                        if (sys.SelectionMethod == Enums.SelectionMethod.HighestPriority)
-                              sys.SimulationTable[i].AssignedServer = prioritySelection(sys, sys.SimulationTable[i]); //priority server selection 
-                        else if (sys.SelectionMethod == Enums.SelectionMethod.Random)
-                            sys.SimulationTable[i].AssignedServer = randomSelection(sys, sys.SimulationTable[i]); //!!! in progress
-                        else
-                            sys.SimulationTable[i].AssignedServer = leastUtilization(sys, sys.SimulationTable[i]); //!!! in progress
-                        //----------------------------------------------------------------
+                    if (sys.SimulationTable[i].TimeInQueue != 0)
+                        sys.NumOfWaitedCus++;
 
-                        //  chart
-                       
+                    for (int j = sys.SimulationTable[i].StartTime; j <= sys.SimulationTable[i].EndTime; j++)
+                        sys.SimulationTable[i].AssignedServer.busy[j] = 1;
 
-                        //-------------------------------OutPut-------------------------------------
-                        sys.SimulationTable[i].AssignedServer.TotalWorkingTime += sys.SimulationTable[i].ServiceTime;
-                        sys.SimulationTable[i].AssignedServer.TotalCustomers++;
-                        sys.SimulationTable[i].ServerID = sys.SimulationTable[i].AssignedServer.ID;
-                     
+                }
 
-                        sys.SimulationTable[i].TimeInQueue = sys.SimulationTable[i].StartTime - sys.SimulationTable[i].ArrivalTime;        
-                        sys.SimulationTable[i].EndTime = sys.SimulationTable[i].ServiceTime + sys.SimulationTable[i].StartTime;
-                        sys.TotalTimeinQueue += sys.SimulationTable[i].TimeInQueue;
-                        sys.TotalRunTime += sys.SimulationTable[i].EndTime; // Sup of output
-                        if (sys.SimulationTable[i].TimeInQueue != 0)
-                            sys.NumOfWaitedCus++;
-
-                        for (int j = sys.SimulationTable[i].StartTime; j <= sys.SimulationTable[i].EndTime; j++)
-                            sys.SimulationTable[i].AssignedServer.busy[j] = 1;
-
-                    }
-                }  
             }
-            else
+
+            // code Mabrouk
+            for (int i = 0; i<sys.SimulationTable.Count;i++)
             {
-
+                int count = 0;
+                for(int j=i; j<sys.SimulationTable.Count;j++)
+                {
+                    if (sys.SimulationTable[j].ArrivalTime <sys.SimulationTable[i].StartTime)
+                    {
+                        count++;
+                    }
+                }
+                sys.PerformanceMeasures.MaxQueueLength = Math.Max(sys.PerformanceMeasures.MaxQueueLength, count);
 
             }
-
             //-------------------------------OutPut--------------------------------
-            sys.AverageWaitingTime = (float) sys.TotalTimeinQueue /(float) sys.SimulationTable.Count ;
-            sys.WaitingProbability =(float) sys.NumOfWaitedCus /(float) sys.SimulationTable.Count ;
+            sys.AverageWaitingTime =(float) ((float) sys.TotalTimeinQueue /(float) sys.SimulationTable.Count) ;
 
+
+            sys.WaitingProbability =(float) sys.NumOfWaitedCus /(float) sys.SimulationTable.Count ;
 
 
             for(int i = 0; i<sys.Servers.Count();i++)
             {
                 int idle = sys.TotalRunTime - sys.Servers[i].TotalWorkingTime;
-                sys.Servers[i].IdleProbability =(decimal)  idle / (decimal) sys.TotalRunTime;
+
+                sys.Servers[i].IdleProbability =((decimal)  idle / (decimal) sys.TotalRunTime);
+                sys.Servers[i].Utilization = ((decimal)sys.Servers[i].TotalWorkingTime / (decimal)sys.TotalRunTime);
+
                 if (sys.Servers[i].TotalCustomers > 0)
                     sys.Servers[i].AverageServiceTime =(decimal) sys.Servers[i].TotalWorkingTime /(decimal) sys.Servers[i].TotalCustomers;
                 else
                     sys.Servers[i].AverageServiceTime = 0;
             }
-            
+
+            sys.PerformanceMeasures.AverageWaitingTime =(decimal) sys.AverageWaitingTime;
+            sys.PerformanceMeasures.WaitingProbability =(decimal) sys.WaitingProbability;
+
+
         }
 
         public static Server randomSelection(SimulationSystem sys, SimulationCase scase)
@@ -201,13 +224,6 @@ namespace MultiQueueSimulation
         {
             int minimum = 1000000;
             int index = -1;
-
-            //test
-        //    Random rd = new Random();
-         //   scase.RandomService = rd.Next(1, 100); //column E
-            //***********************************
-
-
             for (int i = 0; i < sys.Servers.Count(); i++)
             {
                 if (sys.Servers[i].FinishTime <= scase.ArrivalTime)
@@ -261,6 +277,7 @@ namespace MultiQueueSimulation
         {
             return new Server(); //!!!!!!!
         }
+
 
     }
 }

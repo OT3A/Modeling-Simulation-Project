@@ -34,7 +34,7 @@ namespace MultiQueueModels
                     timeDis[i].CummProbability = timeDis[i].Probability;
                     timeDis[i].MinRange = 1;
 
-                    int temp = (int)(((timeDis[i].CummProbability * 100) / 2) * 2);
+                    int temp = (int)((timeDis[i].CummProbability * 100));
 
                     timeDis[i].MaxRange = temp;
                 }
@@ -42,9 +42,9 @@ namespace MultiQueueModels
                     timeDis[i].CummProbability = timeDis[i].Probability + timeDis[i - 1].CummProbability;
                     timeDis[i].MinRange = timeDis[i-1].MaxRange + 1;
 
-                    int temp = (int)(((timeDis[i].CummProbability * 100) / 2) * 2);
+                    int temp = (int)(((timeDis[i].CummProbability * 100) ) );
 
-                    timeDis[i].MaxRange = timeDis[i].MinRange + temp;
+                    timeDis[i].MaxRange = temp;
                 }
             }
         }

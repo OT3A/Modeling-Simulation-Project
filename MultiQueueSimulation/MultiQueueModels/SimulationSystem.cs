@@ -27,7 +27,7 @@ namespace MultiQueueModels
         public int TotalTimeinQueue { get; set; }
         public int NumOfWaitedCus { get; set; }
         public int TotalRunTime { get; set; }
-
+        public int MaxService { get; set; }
 
         ///////////// OUTPUTS /////////////
         public List<SimulationCase> SimulationTable { get; set; }

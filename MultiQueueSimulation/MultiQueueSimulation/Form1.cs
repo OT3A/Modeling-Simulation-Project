@@ -57,15 +57,16 @@ namespace MultiQueueSimulation
                     dataGridView1.DataSource = sys.SimulationTable;
 
 
-                    List<PerformanceMeasures> temp = new List<PerformanceMeasures>();    
+                    List<PerformanceMeasures2> temp = new List<PerformanceMeasures2>();    
                        
                     for(int i = 0; i<sys.Servers.Count;i++)
                     {
-                        temp.Add(new PerformanceMeasures(i+1,sys.Servers[i].IdleProbability, sys.Servers[i].AverageServiceTime));
+                        temp.Add(new PerformanceMeasures2(i+1,sys.Servers[i].IdleProbability, sys.Servers[i].AverageServiceTime,sys.Servers[i].Utilization));
                     }
                     dataGridView2.DataSource = temp;
                     textBox1.Text = sys.WaitingProbability.ToString();
                     textBox2.Text = sys.AverageWaitingTime.ToString();
+              //      textBox3.Text = sys..ToString();
 
                     comboBox1.Items.Clear();
                     for (int i = 1; i <= sys.Servers.Count; i++)
@@ -133,6 +134,16 @@ namespace MultiQueueSimulation
             int x = comboBox1.SelectedIndex;
             Form2 frm = new Form2(sys.Servers[x]);
             frm.Show();
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

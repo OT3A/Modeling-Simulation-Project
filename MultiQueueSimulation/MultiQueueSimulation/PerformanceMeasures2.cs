@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace MultiQueueSimulation
 {
-    class PerformanceMeasures
+    class PerformanceMeasures2
     {
         public int ServerID { get; set; } 
         public decimal IdleProbability { get; set; }
         public decimal AverageServiceTime { get; set; }
+        public decimal Utilization { get; set; }
 
-        public PerformanceMeasures(int serverID, decimal idleProbability, decimal averageServiceTime)
+        public PerformanceMeasures2(int serverID, decimal idleProbability, decimal averageServiceTime,decimal utilization)
         {
             ServerID = serverID;
             IdleProbability = idleProbability;
             AverageServiceTime = averageServiceTime;
+            Utilization = utilization;
         }
-        public PerformanceMeasures()
+        public PerformanceMeasures2()
         {
 
         }

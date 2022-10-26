@@ -17,12 +17,12 @@ namespace MultiQueueModels
         {
             this.TimeDistribution = new List<TimeDistribution>();
             //this.is_idle = true;
-            busy = new int [1000];
+            busy = new int [10000];
             this.ID = id;
         }
 
 
-
+        public int MaxService { get; set; }
         public int ID { get; set; }
         public decimal IdleProbability { get; set; }
         public decimal AverageServiceTime { get; set; } 
