@@ -13,6 +13,7 @@ namespace MultiQueueSimulation
         public decimal AverageServiceTime { get; set; }
         public decimal Utilization { get; set; }
 
+        //passing data to graid view 2
         public PerformanceMeasures2(int serverID, decimal idleProbability, decimal averageServiceTime,decimal utilization)
         {
             ServerID = serverID;

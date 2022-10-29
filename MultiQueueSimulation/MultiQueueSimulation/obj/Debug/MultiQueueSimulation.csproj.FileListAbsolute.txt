@@ -39,3 +39,18 @@ C:\Users\Ahmed Ali\Downloads\Modeling-Simulation-Project-main\MultiQueueSimulati
 C:\Users\Ahmed Ali\Downloads\Modeling-Simulation-Project-main\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueModels.pdb
 C:\Users\Ahmed Ali\Downloads\Modeling-Simulation-Project-main\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe
 C:\Users\Ahmed Ali\Downloads\Modeling-Simulation-Project-main\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.pdb
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe.config
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.pdb
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueModels.dll
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueModels.pdb
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.AssemblyReference.cache
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.SuggestedBindingRedirects.cache
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.Form1.resources
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.Form2.resources
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.Properties.Resources.resources
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.GenerateResource.cache
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.CoreCompileInputs.cache
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.CopyComplete
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe
+G:\Projects\Modeling-Simulation-Project\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.pdb
